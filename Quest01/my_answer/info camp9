@@ -1,0 +1,91 @@
+instrusction
+        There's been a murder in Terminal City, and TCPD needs your help.
+        To figure out who has done it, go to the 'mystery' subdirectory and start working from there.
+        You'll want to start by collecting all the clues at the crime scene (the 'crimescene' file).
+        The officers on the scene are pretty meticulous, so they've written down EVERYTHING in their officer reports.
+        Fortunately the sergeant went through and marked the real clues with the word "CLUE" in all caps.
+        If you get stuck, open one of the hint files (from the CL, type 'cat hint1', 'cat hint2', etc.).
+
+        В Терминал Сити произошло убийство, и TCPD нуждается в вашей помощи.
+        Чтобы выяснить, кто это сделал, перейдите в подкаталог «mystery» и начните работать оттуда.
+        Вы можете начать с сбора всех улик на месте преступления (файл «места преступления»).
+        Офицеры на месте довольно дотошны, поэтому они написали ВСЕ в своих отчетах.
+        К счастью, сержант прошел и обозначил настоящие подсказки словом «CLUE» во всех заглавных буквах.
+        Если вы застряли, откройте один из файлов подсказок (из CL введите «cat hint1», «cat hint2» и т. Д.).
+
+help
+    hint1 
+
+            Try poking around what's in a file by using the 'head' command:
+            head -n 20 people
+            This will show you the first 20 lines of the 'people' file.
+
+            Попробуйте поэкспериментировать с тем, что находится в файле, используя команду «head»:
+            голова 20 человек
+            Это покажет вам первые 20 строк файла 'people'.
+    hint 2 
+            Try using grep to search for the clues in the crimescene file:
+	        grep "CLUE" crimescene
+
+            Попробуйте использовать grep для поиска улик в файле преступления:
+            grep "CLUE" криминальная сцена
+    hint 3 
+            In order to track down our potential witness, we need to figure out where she lives.
+            Try using 'head' on some of the files like 'people' and 'vehicles' and see where we might find that.
+
+            Чтобы отследить нашу потенциальную свидетельницу, нам нужно выяснить, где она живет.
+            Попробуйте использовать «head» на некоторых файлах, таких как «people» и «Vehicles», и посмотрите, где мы можем найти это.
+    hint 4
+            To find all the Annabels' addresses, use the 'people' file:
+                grep "Annabel" people
+            Notice that not all of the results are worth investigating.  Remember what we know about Annabel.
+
+            Чтобы найти все адреса Annabels, используйте файл people:
+            grep "Аннабель" люди
+            Обратите внимание, что не все результаты заслуживают изучения. Помните, что мы знаем об Аннабель.
+    hint 5
+            "Interview" the two possible witnesses by reading the correct line from the streets they live on:
+            head -n 173 streets/Mattapan_Street | tail -n 1
+            This will give you just line 173 of Mattapan street, because it will take first 173 lines, and then take
+            the last line from thos
+
+            «Опросите» двух возможных свидетелей, прочитав правильную строку с улиц, на которых они живут:
+            голова -n 173 улицы / Mattapan_Street | хвост -n 1
+            Это даст вам только линию 173 улицы Маттапан, потому что она займет сначала 173 линии, а затем
+            последняя строка из этого
+    hint 6
+                To find a matching license plate, or a matching car, you can use grep on the 'vehicles' file:
+                grep "Honda" vehicles
+                grep "Blue" vehicles
+                grep "L337" vehicles
+                This doesn't give us anything useful - why not? Try using 'head' on the file to investigate its structure.
+
+                Чтобы найти соответствующий номерной знак или подходящий автомобиль, вы можете использовать grep в файле «транспортных средств»:
+                Грэп "Хонда"
+                grep "Голубые" автомобили
+                автомобили grep "L337"
+                Это не дает нам ничего полезного - почему бы и нет? Попробуйте использовать 'head' для файла, чтобы изучить его структуру.
+    hint 7
+                In order to actually get information about vehicles that might match our description,
+                we need to get multiple lines AROUND each match.  We can use the -A, -B, or -C option with grep:
+                grep -A 5 "L337" mystery/vehicles
+                This will match the license plates that contain "L337" and, for each match, show us the five lines AFTER it.
+
+                Для того, чтобы на самом деле получить информацию о транспортных средствах, которые могут соответствовать нашему описанию,
+                нам нужно получить несколько строк вокруг каждого матча. Мы можем использовать опцию -A, -B или -C с grep:
+                grep -A 5 "L337" загадка / автомобили
+                Это будет соответствовать номерным знакам, которые содержат «L337» и, для каждого матча, покажите нам пять строк после него.
+    hint 8
+                To see who was a member of several different groups, you can combine their membership lists into one and search against that.
+                cat Fitness_Galaxy AAA United_MileagePlus | grep "John Smith"
+                If you only want to see the number of matches, you can use grep's -c option (the c must be lowercase):
+                    cat Fitness_Galaxy AAA United_MileagePlus | grep -c "John Smith"
+                Or you can pipe the result to 'wc -l':
+                    cat Fitness_Galaxy AAA United_MileagePlus | grep "John Smith" | wc -l
+                
+                Чтобы увидеть, кто был членом нескольких разных групп, вы можете объединить их списки членства в один и искать против этого.
+                кошка Fitness_Galaxy AAA United_MicyclePlus | grep "Джон Смит"
+                Если вы хотите видеть только количество совпадений, вы можете использовать опцию -c grep (c должен быть в нижнем регистре):
+                кошка Fitness_Galaxy AAA United_MicyclePlus | grep -c "Джон Смит"
+                Или вы можете передать результат в 'wc -l':
+                кошка Fitness_Galaxy AAA United_MicyclePlus | Греп "Джон Смит" | туалет

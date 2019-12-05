@@ -1,0 +1,84 @@
+grep 'CLUE' crimescene
+    CLUE: Footage from an ATM security camera is blurry but shows that the perpetrator is a tall male, at least 6'.
+    CLUE: Found a wallet believed to belong to the killer: no ID, just loose change, and membership cards for AAA, Delta SkyMiles, the local library, and the Museum of Bash History. The cards are totally untraceable and have no name, for some reason.
+    CLUE: Questioned the barista at the local coffee shop. He said a woman left right before they heard the shots. The name on her latte was Annabel, she had blond spiky hair and a New Zealand accent.
+    ПОДСКАЗКА: кадры с камеры безопасности банкомата расплывчаты, но показывают, что преступник - высокий мужчина, минимум 6 '.
+    ПОДСКАЗКА: Найден кошелек, который, как считается, принадлежит убийце: нет удостоверения личности, только мелкие деньги и членские карты для AAA, Delta SkyMiles, местной библиотеки и Музея истории Баш. 
+    Карты по какой-то причине абсолютно не отслеживаются и не имеют названия.
+    КЛУБ: Допросили бариста в местной кофейне. Он сказал, что женщина ушла направо, прежде чем они услышали выстрелы. На латте ее звали Аннабель, 
+    у нее были светлые колючие волосы и новозеландский акцент.
+grep 'Annabel' people
+    NAME	GENDER	AGE	ADDRESS 
+    Annabel Sun	F	26	Hart Place, line 40
+    Oluwasegun Annabel	M	37	Mattapan Street, line 173
+    Annabel Church	F	38	Buckingham Place, line 179
+    Annabel Fuglsang	M	40	Haley Street, line 176
+head -n 40 streets/Hart_Place | tail -n 1
+    SEE INTERVIEW #47246024
+head -n 179 streets/Buckingham_Place | tail -n 1
+    SEE INTERVIEW #699607
+cd INTERVIEW
+    cat interview-47246024
+Ms. Sun has brown hair and is not from New Zealand.  Not the witness from the cafe.
+cat interview-699607
+    Interviewed Ms. Church at 2:04 pm.  Witness stated that she did not see anyone she could identify as the shooter, that she ran away as soon as the shots were fired.
+
+    However, she reports seeing the car that fled the scene.  Describes it as a blue Honda, with a license plate that starts with "L337" and ends with "9"
+cat vehicles | grep -A 5 'L337' | grep -A 4 -B 1 'Honda' | grep -A 3 -B 2 'Blue' | grep -A 1  -B 4 '6.'
+    License Plate L337QE9
+    Make: Honda
+    Color: Blue
+    Owner: Erika Owens
+    Height: 6'5"
+    Weight: 220 lbs
+    --
+    Owner: Aron Pilhofer
+    Height: 5'3"
+    Weight: 198 lbs
+    --
+    License Plate L337369
+    Make: Honda
+    --
+    License Plate L337DV9
+    Make: Honda
+    Color: Blue
+    Owner: Joe Germuska
+    Height: 6'2"
+    Weight: 164 lbs
+    --
+    License Plate L3375A9
+    Make: Honda
+    Color: Blue
+    Owner: Dartey Henv
+    Height: 6'1"
+    Weight: 204 lbs
+    --
+    License Plate L337WR9
+    Make: Honda
+    Color: Blue
+    Owner: Hellen Maher
+    Height: 6'2"
+    Weight: 130 lbs
+cd memberships/
+cat AAA Delta_SkyMiles Terminal_City_Library Museum_of_Bash_History | grep 'Erika Owens'
+cat AAA Delta_SkyMiles Terminal_City_Library Museum_of_Bash_History | grep 'Joe Germuska'
+Joe Germuska
+Joe Germuska
+cat AAA Delta_SkyMiles Terminal_City_Library Museum_of_Bash_History | grep 'Dartey Henv'
+Dartey Henv
+Dartey Henv
+Dartey Henv
+Dartey Henv
+cat AAA Delta_SkyMiles Terminal_City_Library Museum_of_Bash_History | grep 'Hellen Maher'
+Hellen Maher
+Hellen Maher
+Hellen Maher
+Hellen Maher
+cd ..
+
+
+по логике опредеяем что Hellen женщина, а по нашим подсказкам преступник мужчина - Dartey Henv.
+*в командах отсутствуют выходы и входы в папки cd / cd ..
+пишем ответ в файл my_answer.sh echo "Dartey Henv". 
+Выводим ответ в командной строке ./explain.sh | cat -e
+пушаем.
